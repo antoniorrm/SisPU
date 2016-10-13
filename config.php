@@ -16,7 +16,7 @@ define( 'HOME_URI', 'http://localhost/Gerenciador' );
 define( 'HOSTNAME', 'localhost' );
 
 // Nome do DB
-define( 'DB_NAME', 'tutsup' );
+define( 'DB_NAME', 'gerenciador' );
 
 // Usuário do DB
 define( 'DB_USER', 'root' );
