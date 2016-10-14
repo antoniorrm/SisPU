@@ -11,5 +11,6 @@
 		<li><a href="<?php echo HOME_URI;?>/noticias/adm/">Notícias Admin</a></li>
 		<li><a href="<?php echo HOME_URI;?>/exemplo/">Exemplo básico</a></li>
 		<li><a href="<?php echo HOME_URI;?>/BannerRegister/">Banner</a></li>
+		<li><a href="<?php echo HOME_URI;?>/SlideRegister/">Slide</a></li>
 	</ul>
 </nav>

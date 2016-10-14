@@ -1,15 +1,9 @@
 <?php  
-	require_once "DB.php";
-	class Slide extends DB{
+	class Slide{
 		private $codigo;
 		private $texto;
 		private $imagem;
-
-		function __construct($codigo, $texto, $imagem){
-			$this->codigo = $codigo;
-			$this->texto = $texto;
-			$this->imagem = $imagem;
-		}
+		private $codigoUsuario;
 
 		public function getCodigo(){
 			return $this->codigo;
@@ -17,6 +11,14 @@
 
 		public function setCodigo($codigo){
 			$this->codigo = $codigo;
+		}
+
+		public function getCodigoUsuario(){
+			return $this->codigoUsuario;
+		}
+
+		public function setCodigoUsuario($codigoUsuario){
+			$this->codigoUsuario = $codigoUsuario;
 		}
 
 		public function getTexto(){
