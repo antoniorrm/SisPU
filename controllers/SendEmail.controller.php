@@ -5,7 +5,7 @@
  * @package TutsupMVC
  * @since 0.1
  */
-class BannerRegisterController extends MainController
+class SendEmailController extends MainController
 {
 
     /**
@@ -24,14 +24,14 @@ class BannerRegisterController extends MainController
      *
      * @access public
      */
-    public $permission_required = 'crud-banner';
+    public $permission_required = 'crud-email';
 
     /**
-     * Carrega a página "/views/user-register/index.php"
+     * Carrega a view
      */
-    public function index() {
+    public function index(){
         // Page title
-        $this->title = 'Banner Register';
+        $this->title = 'Enviar e-mail';
 
         // Verifica se o usuário está logado
         if ( ! $this->logged_in){
@@ -55,8 +55,7 @@ class BannerRegisterController extends MainController
         $parametros = (func_num_args() >= 1) ? func_get_arg(0) : array();
 
         // Carrega o modelo para este view
-        $modelo = $this->load_model('BannerRegister');
-
+        $modelo = $this->load_model('SendEmail');
         /** Carrega os arquivos do view **/
 
         // /views/_includes/header.php
@@ -66,7 +65,7 @@ class BannerRegisterController extends MainController
         require ABSPATH . '/views/_includes/menu.php';
 
         // /views/user-register/index.php
-        require ABSPATH . '/views/BannerRegister.view.php';
+        require ABSPATH . '/views/SendEmail.view.php';
 
         // /views/_includes/footer.php
         require ABSPATH . '/views/_includes/footer.php';

@@ -7,10 +7,9 @@
 		<li><a href="<?php echo HOME_URI;?>">Home</a></li>
 		<li><a href="<?php echo HOME_URI;?>/login/">Login</a></li>
 		<li><a href="<?php echo HOME_URI;?>/UserRegister/">User Register</a></li>
-		<li><a href="<?php echo HOME_URI;?>/noticias/">Notícias</a></li>
-		<li><a href="<?php echo HOME_URI;?>/noticias/adm/">Notícias Admin</a></li>
-		<li><a href="<?php echo HOME_URI;?>/exemplo/">Exemplo básico</a></li>
 		<li><a href="<?php echo HOME_URI;?>/BannerRegister/">Banner</a></li>
 		<li><a href="<?php echo HOME_URI;?>/SlideRegister/">Slide</a></li>
+		<li><a href="<?php echo HOME_URI;?>/ContatoRegister/">Contato</a></li>
+		<li><a href="<?php echo HOME_URI;?>/SendEmail/">Send email</a></li>
 	</ul>
 </nav>

@@ -95,7 +95,7 @@ class MainController extends UserLogin
 	 */
 	public function load_model( $model_name = false ) {
 		// Um arquivo deverá ser enviado
-		if ( ! $model_name ) return;
+		if (!$model_name ) return;
 		
 		// Garante que o nome do modelo tenha letras minúsculas
 		//$model_name =  strtolower( $model_name );
@@ -104,7 +104,7 @@ class MainController extends UserLogin
 		$model_path = ABSPATH . '/models/' . $model_name . '.model.php';
 
 		// Verifica se o arquivo existe
-		if ( file_exists( $model_path ) ) {
+		if(file_exists($model_path)){
 
 			// Inclui o arquivo
 			require_once $model_path;
@@ -120,10 +120,8 @@ class MainController extends UserLogin
 			
 			// Verifica se a classe existe
 			if ( class_exists( $model_name ) ) {
-			
 				// Retorna um objeto da classe
-				return new $model_name( $this->instance, $this );
-			
+				return new $model_name($this->instance, $this);
 			}
 			
 			// The end :)

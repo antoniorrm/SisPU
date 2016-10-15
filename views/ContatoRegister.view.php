@@ -54,10 +54,12 @@ $lista = $modelo->get_user_list();
 <table class="list-table">
 	<thead>
 		<tr>
+			<th>Código</th>
 			<th>Nome</th>
 			<th>Sobrenome</th>
 			<th>Texto</th>
 			<th>Email</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 			

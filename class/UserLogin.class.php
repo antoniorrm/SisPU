@@ -73,11 +73,9 @@ class UserLogin
 			$userdata['post'] = true;
 		}
 		// Verifica se existe algum dado de usuário para conferir
-		if ( ! isset( $userdata ) || ! is_array( $userdata ) ) {
-		
+		if (!isset($userdata) || !is_array( $userdata ) ) {
 			// Desconfigura qualquer sessão que possa existir sobre o usuário
 			$this->logout();
-		
 			return;
 		}
 		// Passa os dados do post para uma variável

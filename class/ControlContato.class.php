@@ -136,5 +136,8 @@
             $pojo->setEmail($row['email']);
             return $pojo;
         }
+        public function responder($codigo, $nome, $sobrenome, $texto, $email){
+
+        }
     }
  ?>

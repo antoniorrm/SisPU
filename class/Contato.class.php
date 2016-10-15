@@ -8,11 +8,6 @@
         private $email;
         private $codigoUsuario;
 
-        public function responder($codigo, $nome, $sobrenome, $texto, $email)
-        {
-
-        }
-
         public function getCodigo()
         {
             return $this->codigo;

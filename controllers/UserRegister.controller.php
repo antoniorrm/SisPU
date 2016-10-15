@@ -72,7 +72,7 @@ class UserRegisterController extends MainController
         require ABSPATH . '/views/_includes/menu.php';
 		
 		// /views/user-register/index.php
-        require ABSPATH . '/views/user-register-view.php';
+        require ABSPATH . '/views/UserRegister.view.php';
 		
 		// /views/_includes/footer.php
         require ABSPATH . '/views/_includes/footer.php';

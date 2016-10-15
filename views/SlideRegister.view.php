@@ -42,8 +42,10 @@ $lista = $modelo->get_user_list();
 <table class="list-table">
 	<thead>
 		<tr>
+			<th>Código</th>
 			<th>Texto</th>
 			<th>Imagem</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 			
