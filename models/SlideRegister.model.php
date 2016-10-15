@@ -177,6 +177,8 @@ class SlideRegister
         $this->form_data['texto'] = $slide->getTexto();
         $this->form_data['imagem'] = $slide->getImagem();
     } // get_register_form
+
+    
 	public function del_user($parametros = array()){
 
 		// O ID do usuário

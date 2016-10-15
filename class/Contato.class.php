@@ -6,56 +6,39 @@
         private $sobrenome;
         private $texto;
         private $email;
-        private $codigoUsuario;
 
-        public function getCodigo()
-        {
+        public function getCodigo(){
             return $this->codigo;
         }
-        public function setCodigo($cod)
-        {
+        public function setCodigo($cod){
             $this->codigo = $cod;
         }
 
-        public function getCodigoUsuario()
-        {
-            return $this->codigoUsuario;
-        }
-        public function setCodigoUsuario($cod)
-        {
-            $this->codigoUsuario = $cod;
-        }
-
-        public function getNome()
-        {
+        public function getNome(){
             return $this->nome;
         }
-        public function setNome($nome)
-        {
+        public function setNome($nome){
             $this->nome = $nome;
         }
-        public function getSobrenome()
-        {
+
+        public function getSobrenome(){
             return $this->sobrenome;
         }
-        public function setSobrenome($sobrenome)
-        {
+        public function setSobrenome($sobrenome){
             $this->sobrenome = $sobrenome;
         }
-        public function getTexto()
-        {
+
+        public function getTexto(){
             return $this->texto;
         }
-        public function setTexto($texto)
-        {
+        public function setTexto($texto){
             $this->texto = $texto;
         }
-        public function getEmail()
-        {
+        
+        public function getEmail(){
             return $this->email;
         }
-        public function setEmail($email)
-        {
+        public function setEmail($email){
             $this->email = strtolower($email);
         }
 

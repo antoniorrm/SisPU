@@ -23,14 +23,12 @@
                     nome,
                     sobrenome,
                     texto,
-                    email,
-                    codigoUsuario)
+                    email)
                     VALUES (
                     :nome,
                     :sobrenome,
                     :texto,
-                    :email,
-                    :codigoUsuario)";
+                    :email)";
 
                 $p_sql = Conexao::getInstance()->prepare($sql);
 
@@ -38,7 +36,6 @@
                 $p_sql->bindValue(":sobrenome", $contato->getSobrenome());
                 $p_sql->bindValue(":texto", $contato->getTexto());
                 $p_sql->bindValue(":email", $contato->getEmail());
-                $p_sql->bindValue(":codigoUsuario", $contato->getCodigoUsuario());
 
                 return $p_sql->execute();
             } catch (Exception $e) {
@@ -72,7 +69,6 @@
         public function editarContato(Contato $contato) {
             try {
                 $sql = "UPDATE contato set
-
                 nome = :nome,
                 sobrenome = :sobrenome,
                 texto = :texto,
@@ -135,9 +131,6 @@
             $pojo->setTexto($row['texto']);
             $pojo->setEmail($row['email']);
             return $pojo;
-        }
-        public function responder($codigo, $nome, $sobrenome, $texto, $email){
-
         }
     }
  ?>

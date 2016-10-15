@@ -112,18 +112,6 @@ class SendEmail
         $this->form_msg = '<p class="form_success">Emails enviados com sucesso.</p>';
         $this->form_data = null;
         return;
-
-        /*if(!$instControleEmail->enviarEmail($this->form_data['titulo'], $this->form_data['bodyEmail'])){
-            $this->form_msg = '<p class="form_error">Internal error. Data has not been sent.</p>';
-            // Termina
-            return;
-        }else{
-            $this->form_msg = '<p class="form_success">Emails enviados com sucesso.</p>';
-            $this->form_data = null;
-
-            // Termina
-            return;
-        }*/
     } // validate_register_form
 
     /**

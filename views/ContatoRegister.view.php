@@ -5,8 +5,7 @@
 <?php
 // Carrega todos os métodos do modelo
 $modelo->validate_register_form( $parametros );	
-$modelo->get_register_form( chk_array( $parametros, 1 ) );
-$modelo->del_user( $parametros );
+$modelo->del_contact($parametros);
 ?>
 
 <form method="post" action="">
@@ -47,10 +46,8 @@ $modelo->del_user( $parametros );
 
 <?php 
 // Lista os usuários
-$lista = $modelo->get_user_list(); 
+$lista = $modelo->get_contact_list(); 
 ?>
-
-
 <table class="list-table">
 	<thead>
 		<tr>
@@ -76,8 +73,8 @@ $lista = $modelo->get_user_list();
 				<td> <?php echo $fetch_userdata['email'] ?> </td>
 				
 				<td> 
-					<a href="<?php echo HOME_URI ?>/ContatoRegister/index/edit/<?php echo $fetch_userdata['codigo'] ?>">Edit</a>
 					<a href="<?php echo HOME_URI ?>/ContatoRegister/index/del/<?php echo $fetch_userdata['codigo'] ?>">Delete</a>
+					<a href="<?php echo HOME_URI ?>/ContatoRegister/reply/<?php echo $fetch_userdata['codigo'] ?>">Responder</a>
 				</td>
 
 			</tr>
