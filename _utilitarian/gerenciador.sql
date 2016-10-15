@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 09/10/2016 às 11:07
+-- Tempo de geração: 15/10/2016 às 13:15
 -- Versão do servidor: 5.7.15-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.8-0ubuntu0.16.04.3
 
@@ -32,6 +32,18 @@ CREATE TABLE `banner` (
   `imagem` varchar(130) CHARACTER SET latin1 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Fazendo dump de dados para tabela `banner`
+--
+
+INSERT INTO `banner` (`codigo`, `codigoUsuario`, `imagem`) VALUES
+(1, 1, 'sdfds.png'),
+(2, 1, 'Teste.jpg'),
+(3, 1, 'Teste.jpg'),
+(4, 1, 'Teste.jpg'),
+(5, 1, 'sdfdsa.png'),
+(6, 1, 'sdfds.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +59,13 @@ CREATE TABLE `contato` (
   `texto` text CHARACTER SET latin1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Fazendo dump de dados para tabela `contato`
+--
+
+INSERT INTO `contato` (`codigo`, `codigoUsuario`, `nome`, `sobrenome`, `email`, `texto`) VALUES
+(1, 1, 'Jordão', 'Souza', 'jordao.souza05@gmail.com', 'Oi');
+
 -- --------------------------------------------------------
 
 --
@@ -54,9 +73,17 @@ CREATE TABLE `contato` (
 --
 
 CREATE TABLE `email` (
-  `codigo` int(10) UNSIGNED NOT NULL,
-  `email` varchar(50) CHARACTER SET latin1 DEFAULT NULL
+  `email` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `email`
+--
+
+INSERT INTO `email` (`email`, `nome`) VALUES
+('jordao.souza05@gmail.com', 'Jordão Gmail'),
+('jordao05@hotmail.com', 'Jordão Hotmail');
 
 -- --------------------------------------------------------
 
@@ -98,6 +125,13 @@ CREATE TABLE `slide` (
   `imagem` varchar(130) CHARACTER SET latin1 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Fazendo dump de dados para tabela `slide`
+--
+
+INSERT INTO `slide` (`codigo`, `codigoUsuario`, `texto`, `imagem`) VALUES
+(1, 1, 'banner 1', 'imagem.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -134,8 +168,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`codigo`, `nome`, `email`, `senha`, `foto`, `user_permissions`, `session_id`) VALUES
-(1, 'Jordão', 'jordao05@hotmail.com', '$2a$08$yifE/ZQyuR8Z7LgZar0TUuBhKBQXwcq6LBS8sbO9Rr66yO9LvpEBm', 'imagem.jpg', 'a:2:{i:0;s:10:"crud-slide";i:1;s:12:"crud-usuario";}', 'kl8ah6pnpl6v65rjr3c92j54c6'),
-(2, 'ghsdghj', 'gjhgjkhg', '$2a$08$4e2aeIASfKDKtj9c.BUlqepq2DfIrMw8HB8MeJRuOP8NPEJyyDFoK', 'kjhgkhg', 'a:1:{i:0;s:7:"kjhgkjh";}', '91b4304724cf84f1fd184797c79ad983'),
+(1, 'Jordão', 'jordao05@hotmail.com', '$2a$08$IckpGt1kSsTRDhQvBVPcbuL5cH8df9Ax0H0DIaqf1mu4hhXUfc9P6', 'imagem.jpg', 'a:5:{i:0;s:10:"crud-slide";i:1;s:12:"crud-usuario";i:2;s:11:"crud-banner";i:3;s:12:"crud-contato";i:4;s:10:"crud-email";}', 'hpv729qknb99ft0b1kl0l70tn1'),
 (3, 'jhfdskjdhh', 'r', '$2a$08$fWrEUa/cZDeZmyLWkFUMS.PgKv.mU/3fQdUm9Iqycf4MLGWn0R19a', 'kjhk', 'a:1:{i:0;s:4:"jhkj";}', 'aaa3199ebfe60fd5765b49a9321ea7d0'),
 (4, 'jhfdskjdhh', 'df', '$2a$08$p5GiF7dwfUVytZMaNm3/Y.BXZH0WXCO/424QkM5lsCwM/QmuGUMlK', 'kjhk', 'a:1:{i:0;s:4:"jhkj";}', '16c00eab842a5b09c472bac8bfaaf241'),
 (5, 'jhfdskjdhh', 'ssa', '$2a$08$40cR1hAV5XCNHcs1venkjeJf7ZfqMIKrqUFqNiIWfX4L05zfv2gum', 'kjhk', 'a:1:{i:0;s:4:"jhkj";}', '83e453bc76ee13fb861ffacbee7eb883'),
@@ -166,7 +199,7 @@ ALTER TABLE `contato`
 -- Índices de tabela `email`
 --
 ALTER TABLE `email`
-  ADD PRIMARY KEY (`codigo`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Índices de tabela `emails_enviados`
@@ -209,17 +242,12 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de tabela `contato`
 --
 ALTER TABLE `contato`
-  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de tabela `email`
---
-ALTER TABLE `email`
-  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de tabela `emails_enviados`
 --
@@ -234,7 +262,7 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de tabela `slide`
 --
 ALTER TABLE `slide`
-  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codigo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de tabela `tema`
 --
