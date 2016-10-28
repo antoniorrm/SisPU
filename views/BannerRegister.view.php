@@ -12,7 +12,7 @@ $modelo->del_banner( $parametros );
 <form method="post" action="">
     <table class="form-table">
         <tr>
-            <td>Nome do Banner: </td>
+            <td>Nome do Banner: </td> 
             <td> <input type="text" name="imagem" value="<?php
                 echo htmlentities( chk_array( $modelo->form_data, 'imagem') );
                 ?>" /></td>
