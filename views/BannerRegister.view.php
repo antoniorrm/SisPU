@@ -12,7 +12,7 @@ $modelo->del_banner( $parametros );
 <form method="post" action="" enctype="multipart/form-data">
     <table class="form-table">
         <tr>
-            <td>Nome do Banner: </td>
+            <td>Banner: </td>
             <td> <input type="file" name="imagem"/></td>
         </tr>
 
