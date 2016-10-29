@@ -57,6 +57,7 @@ class BannerRegisterController extends MainController
         // Carrega o modelo para este view
         $modelo = $this->load_model('BannerRegister');
 
+
         /** Carrega os arquivos do view **/
 
         // /views/_includes/header.php

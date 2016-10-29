@@ -60,37 +60,32 @@ class BannerRegister
     public function validate_register_form ($parametros = array()) {
         // Configura os dados do formulário
         $this->form_data = array();
-
         // Verifica se algo foi postado
-        if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ! empty ( $_POST ) ) {
-
+        /*if ( 'POST' == $_SERVER['REQUEST_METHOD'] && ! empty ( $_POST ) ) {
             // Faz o loop dos dados do post
             foreach ( $_POST as $key => $value ) {
-
                 // Configura os dados do post para a propriedade $form_data
                 $this->form_data[$key] = $value;
-
                 // Nós não permitiremos nenhum campos em branco
                 if ( empty( $value ) ) {
-
                     // Configura a mensagem
                     $this->form_msg = '<p class="form_error">There are empty fields. Data has not been sent.</p>';
-
                     // Termina
                     return;
-
                 }
-
             }
-
-        } else {
+        }else */if(empty ( $_FILES )){
             // Termina se nada foi enviado
             return;
         }
 
-        // Verifica se a propriedade $form_data foi preenchida
-        if( empty( $this->form_data ) ) {
-            return;
+        // Tenta enviar a imagem
+        $imagem = $this->upload_imagem();
+        
+        // Verifica se a imagem foi enviada
+        if ( ! $imagem ) {
+            $this->form_msg = '<p class="form_error">Erro ao enviar imagem.</p>';
+            return;     
         }
 
 
@@ -105,7 +100,7 @@ class BannerRegister
             }
             $novoBanner = new Banner();
             $novoBanner->setCodigo(chk_array($parametros, 1));
-            $novoBanner->setImagem($this->form_data['imagem']);
+            $novoBanner->setImagem($imagem);
             $novoBanner->setCodigoUsuario($_SESSION['userdata']['codigo']);
 
             if (!$instControleBanner->editarBanner($novoBanner)) {
@@ -122,7 +117,7 @@ class BannerRegister
             }
         }else{
             $novoBanner = new Banner();
-            $novoBanner->setImagem($this->form_data['imagem']);
+            $novoBanner->setImagem($imagem);
             $novoBanner->setCodigoUsuario($_SESSION['userdata']['codigo']);
 
             // Verifica se a consulta está OK e configura a mensagem
@@ -246,4 +241,61 @@ class BannerRegister
         // Preenche a tabela com os dados do banner
         return $instControleBanner->listarBanner();
     } // get_banner_list
+
+    /**
+     * Envia a imagem
+     *
+     * @since 0.1
+     * @access public
+     */
+    public function upload_imagem() {
+    
+        // Verifica se o arquivo da imagem existe
+        if ( empty( $_FILES['imagem'] ) ) {
+            return;
+        }
+        
+        // Configura os dados da imagem
+        $imagem         = $_FILES['imagem'];
+        
+        // Nome e extensão
+        $nome_imagem    = strtolower( $imagem['name'] );
+        $ext_imagem     = explode( '.', $nome_imagem );
+        $ext_imagem     = end( $ext_imagem );
+        $nome_imagem    = preg_replace( '/[^a-zA-Z0-9]/', '', $nome_imagem);
+        $nome_imagem   .= '_' . mt_rand() . '.' . $ext_imagem;
+        
+        // Tipo, nome temporário, erro e tamanho
+        $tipo_imagem    = $imagem['type'];
+        $tmp_imagem     = $imagem['tmp_name'];
+        $erro_imagem    = $imagem['error'];
+        $tamanho_imagem = $imagem['size'];
+        
+        // Os mime types permitidos
+        $permitir_tipos  = array(
+            'image/bmp',
+            'image/gif',
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+        );
+        
+        // Verifica se o mimetype enviado é permitido
+        if ( ! in_array( $tipo_imagem, $permitir_tipos ) ) {
+            // Retorna uma mensagem
+            $this->form_msg = '<p class="error">Você deve enviar uma imagem.</p>';
+            return;
+        }
+        
+        // Tenta mover o arquivo enviado
+        if ( ! move_uploaded_file( $tmp_imagem, UP_ABSPATH . '/' . $nome_imagem ) ) {
+            // Retorna uma mensagem
+            $this->form_msg = '<p class="error">Erro ao enviar imagem.</p>';
+            return;
+        }
+        
+        // Retorna o nome da imagem
+        return $nome_imagem;
+        
+    } // upload_imagem
 }

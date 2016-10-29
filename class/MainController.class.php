@@ -117,7 +117,7 @@ class MainController extends UserLogin
 			
 			// Remove caracteres inválidos do nome do arquivo
 			$model_name = preg_replace( '/[^a-zA-Z0-9]/is', '', $model_name );
-			
+
 			// Verifica se a classe existe
 			if ( class_exists( $model_name ) ) {
 				// Retorna um objeto da classe

@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Estrutura para tabela `banner`
 --
+CREATE DATABASE `gerenciador`;
+USE `gerenciador`;
 
 CREATE TABLE `banner` (
   `codigo` int(10) UNSIGNED NOT NULL,

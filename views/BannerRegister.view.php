@@ -9,13 +9,11 @@ $modelo->get_register_form(chk_array($parametros, 1));
 $modelo->del_banner( $parametros );
 ?>
 
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
     <table class="form-table">
         <tr>
             <td>Nome do Banner: </td>
-            <td> <input type="text" name="imagem" value="<?php
-                echo htmlentities( chk_array( $modelo->form_data, 'imagem') );
-                ?>" /></td>
+            <td> <input type="file" name="imagem"/></td>
         </tr>
 
         <tr>
