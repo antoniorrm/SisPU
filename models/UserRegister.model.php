@@ -96,6 +96,15 @@ class UserRegister
 			$this->form_msg = '<p class="form_error">Erro ao cadastrar. Tente novamente..</p>';
 			return;
 		}
+
+		// Tenta enviar a imagem
+        $imagem = $this->upload_imagem();
+        
+        // Verifica se a imagem foi enviada
+        if ( ! $imagem ) {
+            $this->form_msg = '<p class="form_error">Erro ao enviar imagem.</p>';
+            return;     
+        }
 		
 		
 		// Configura o ID do usuário
@@ -135,7 +144,7 @@ class UserRegister
 			$novoUsuario->setNome($this->form_data['user_name']);
 			$novoUsuario->setSenha($password);
 			$novoUsuario->setEmail($this->form_data['email']);
-			$novoUsuario->setFoto($this->form_data['user_foto']);
+			$novoUsuario->setFoto($imagem);
 			$novoUsuario->setPermissoes($permissions);
 			$novoUsuario->setSessionID(md5(time()));
 
@@ -149,7 +158,7 @@ class UserRegister
 			$novoUsuario->setNome($this->form_data['user_name']);
 			$novoUsuario->setEmail($this->form_data['email']);
 			$novoUsuario->setSenha($password);
-			$novoUsuario->setFoto($this->form_data['user_foto']);
+			$novoUsuario->setFoto($imagem);
 			$novoUsuario->setPermissoes($permissions);
 			$novoUsuario->setSessionID(md5(time()));
 			
@@ -281,4 +290,55 @@ class UserRegister
 		// Preenche a tabela com os dados do usuário
 		return $instControleUsuario->listarUsuarios();
 	} // get_user_list
+
+	public function upload_imagem() {
+    
+        // Verifica se o arquivo da imagem existe
+        if ( empty( $_FILES['user_foto'] ) ) {
+            return;
+        }
+        
+        // Configura os dados da imagem
+        $imagem         = $_FILES['user_foto'];
+        
+        // Nome e extensão
+        $nome_imagem    = strtolower( $imagem['name'] );
+        $ext_imagem     = explode( '.', $nome_imagem );
+        $ext_imagem     = end( $ext_imagem );
+        $nome_imagem    = preg_replace( '/[^a-zA-Z0-9]/', '', $nome_imagem);
+        $nome_imagem   .= '_' . mt_rand() . '.' . $ext_imagem;
+        
+        // Tipo, nome temporário, erro e tamanho
+        $tipo_imagem    = $imagem['type'];
+        $tmp_imagem     = $imagem['tmp_name'];
+        $erro_imagem    = $imagem['error'];
+        $tamanho_imagem = $imagem['size'];
+        
+        // Os mime types permitidos
+        $permitir_tipos  = array(
+            'image/bmp',
+            'image/gif',
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+        );
+        
+        // Verifica se o mimetype enviado é permitido
+        if ( ! in_array( $tipo_imagem, $permitir_tipos ) ) {
+            // Retorna uma mensagem
+            $this->form_msg = '<p class="error">Você deve enviar uma imagem.</p>';
+            return;
+        }
+        
+        // Tenta mover o arquivo enviado
+        if ( ! move_uploaded_file( $tmp_imagem, UP_ABSPATH . '/' . $nome_imagem ) ) {
+            // Retorna uma mensagem
+            $this->form_msg = '<p class="error">Erro ao enviar imagem.</p>';
+            return;
+        }
+        
+        // Retorna o nome da imagem
+        return $nome_imagem;
+        
+    } // upload_imagem
 }

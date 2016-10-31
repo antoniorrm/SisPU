@@ -12,6 +12,9 @@ define( 'UP_ABSPATH', ABSPATH . '/views/_uploads' );
 // URL da home
 define( 'HOME_URI', 'http://localhost/Gerenciador' );
 
+//ULR do caminho de arquivos de UPLOAD
+define( 'UPLOAD_URI', HOME_URI . '/views/_uploads' );
+
 // Nome do host da base de dados
 define( 'HOSTNAME', 'localhost' );
 

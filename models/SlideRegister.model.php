@@ -85,6 +85,15 @@ class SlideRegister
             return;
         }
 
+        // Tenta enviar a imagem
+        $imagem = $this->upload_imagem();
+        
+        // Verifica se a imagem foi enviada
+        if ( ! $imagem ) {
+            $this->form_msg = '<p class="form_error">Erro ao enviar imagem.</p>';
+            return;     
+        }
+
 
 
         $instControleSlide = ControleSlide::getInstance();
@@ -98,7 +107,7 @@ class SlideRegister
             $novoSlide = new Slide();
             $novoSlide->setCodigo(chk_array($parametros, 1));
             $novoSlide->setTexto($this->form_data['texto']);
-            $novoSlide->setImagem($this->form_data['imagem']);
+            $novoSlide->setImagem($imagem);
             $novoSlide->setCodigoUsuario($_SESSION['userdata']['codigo']);
 
             if (!$instControleSlide->editarSlide($novoSlide)) {
@@ -116,7 +125,7 @@ class SlideRegister
         }else{
             $novoSlide = new Slide();
             $novoSlide->setTexto($this->form_data['texto']);
-            $novoSlide->setImagem($this->form_data['imagem']);
+            $novoSlide->setImagem($imagem);
             $novoSlide->setCodigoUsuario($_SESSION['userdata']['codigo']);
 
             // Verifica se a consulta está OK e configura a mensagem
@@ -179,7 +188,7 @@ class SlideRegister
     } // get_register_form
 
     
-	public function del_user($parametros = array()){
+	public function del_slide($parametros = array()){
 
 		// O ID do usuário
 		$codigo = null;
@@ -225,7 +234,7 @@ class SlideRegister
 	 * @since 0.1
 	 * @access public
 	 */
-	public function get_user_list(){
+	public function get_slide_list(){
 		$instControleSlide = ControleSlide::getInstance();
 		$listar = $instControleSlide->listarSlide();
 		
@@ -236,4 +245,56 @@ class SlideRegister
 		// Preenche a tabela com os dados do usuário
 		return $instControleSlide->listarSlide();
 	} // get_user_list
+
+
+	public function upload_imagem() {
+    
+        // Verifica se o arquivo da imagem existe
+        if ( empty( $_FILES['imagem'] ) ) {
+            return;
+        }
+        
+        // Configura os dados da imagem
+        $imagem         = $_FILES['imagem'];
+        
+        // Nome e extensão
+        $nome_imagem    = strtolower( $imagem['name'] );
+        $ext_imagem     = explode( '.', $nome_imagem );
+        $ext_imagem     = end( $ext_imagem );
+        $nome_imagem    = preg_replace( '/[^a-zA-Z0-9]/', '', $nome_imagem);
+        $nome_imagem   .= '_' . mt_rand() . '.' . $ext_imagem;
+        
+        // Tipo, nome temporário, erro e tamanho
+        $tipo_imagem    = $imagem['type'];
+        $tmp_imagem     = $imagem['tmp_name'];
+        $erro_imagem    = $imagem['error'];
+        $tamanho_imagem = $imagem['size'];
+        
+        // Os mime types permitidos
+        $permitir_tipos  = array(
+            'image/bmp',
+            'image/gif',
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+        );
+        
+        // Verifica se o mimetype enviado é permitido
+        if ( ! in_array( $tipo_imagem, $permitir_tipos ) ) {
+            // Retorna uma mensagem
+            $this->form_msg = '<p class="error">Você deve enviar uma imagem.</p>';
+            return;
+        }
+        
+        // Tenta mover o arquivo enviado
+        if ( ! move_uploaded_file( $tmp_imagem, UP_ABSPATH . '/' . $nome_imagem ) ) {
+            // Retorna uma mensagem
+            $this->form_msg = '<p class="error">Erro ao enviar imagem.</p>';
+            return;
+        }
+        
+        // Retorna o nome da imagem
+        return $nome_imagem;
+        
+    } // upload_imagem
 }

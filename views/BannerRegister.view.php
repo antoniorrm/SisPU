@@ -12,6 +12,17 @@ $modelo->del_banner( $parametros );
 <form method="post" action="" enctype="multipart/form-data">
     <table class="form-table">
         <tr>
+            <td></td>
+            <td>
+                <?php 
+                    if(!(empty($modelo->form_data))) {
+                        echo '<h1>Alterar a imagem:</h1>';
+                        echo '<img src="' . UPLOAD_URI . '/' . htmlentities(chk_array($modelo->form_data, 'imagem')) . '" width=200px/>';
+                    }
+                ?>
+            </td>
+        </tr>
+        <tr>
             <td>Banner: </td>
             <td> <input type="file" name="imagem"/></td>
         </tr>
@@ -42,15 +53,15 @@ $lista = $modelo->get_banner_list();
 
     <tbody>
 
-        <?php foreach ($lista as $fetch_userdata): ?>
+        <?php foreach ($lista as $fetch_bannerdata): ?>
 
             <tr>
 
-                <td> <?php echo $fetch_userdata['codigo'] ?> </td>
-                <td> <?php echo $fetch_userdata['imagem'] ?> </td>
+                <td> <?php echo $fetch_bannerdata['codigo'] ?> </td>
+                <td> <img src="<?php echo UPLOAD_URI . '/'.$fetch_bannerdata['imagem'] ?>" width=100px/> </td>
                 <td>
-                    <a href="<?php echo HOME_URI ?>/BannerRegister/index/edit/<?php echo $fetch_userdata['codigo'] ?>">Edit</a>
-                    <a href="<?php echo HOME_URI ?>/BannerRegister/index/del/<?php echo $fetch_userdata['codigo'] ?>">Delete</a>
+                    <a href="<?php echo HOME_URI ?>/BannerRegister/index/edit/<?php echo $fetch_bannerdata['codigo'] ?>">Edit</a>
+                    <a href="<?php echo HOME_URI ?>/BannerRegister/index/del/<?php echo $fetch_bannerdata['codigo'] ?>">Delete</a>
                 </td>
 
             </tr>

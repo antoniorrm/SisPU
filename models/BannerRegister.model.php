@@ -163,13 +163,13 @@ class BannerRegister
 
         // Verifica a consulta
         if (!$codigo){
-            $this->form_msg = '<p class="form_error">Usuário não existe.</p>';
+            $this->form_msg = '<p class="form_error">Banner não existe.</p>';
             return;
         }
 
         // Verifica se os dados da consulta estão vazios
         if (empty($banner->getImagem())){
-            $this->form_msg = '<p class="form_error">User do not exists.</p>';
+            $this->form_msg = '<p class="form_error">Banner não existe.</p>';
             return;
         }
 

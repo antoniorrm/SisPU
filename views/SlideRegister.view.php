@@ -6,11 +6,22 @@
 // Carrega todos os métodos do modelo
 $modelo->validate_register_form($parametros);
 $modelo->get_register_form( chk_array( $parametros, 1 ) );
-$modelo->del_user( $parametros );
+$modelo->del_slide( $parametros );
 ?>
 
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 	<table class="form-table">
+		<tr>
+            <td></td>
+            <td>
+                <?php 
+                    if(!(empty($modelo->form_data))) {
+                        echo '<h1>Alterar a imagem:</h1>';
+                        echo '<img src="' . UPLOAD_URI . '/' . htmlentities(chk_array($modelo->form_data, 'imagem')) . '" width=200px/>';
+                    }
+                ?>
+            </td>
+        </tr>
 		<tr>
 			<td>Texto: </td>
 			<td> <input type="text" name="texto" value="<?php 
@@ -19,9 +30,7 @@ $modelo->del_user( $parametros );
 		</tr>
 		<tr>
 			<td>Imagem: </td>
-			<td> <input type="text" name="imagem" value="<?php
-				echo htmlentities( chk_array( $modelo->form_data, 'imagem') );
-			?>" /></td>
+			<td> <input type="file" name="imagem"/></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -35,7 +44,7 @@ $modelo->del_user( $parametros );
 
 <?php 
 // Lista os usuários
-$lista = $modelo->get_user_list(); 
+$lista = $modelo->get_slide_list(); 
 ?>
 
 
@@ -57,7 +66,7 @@ $lista = $modelo->get_user_list();
 			
 				<td> <?php echo $fetch_userdata['codigo'] ?> </td>
 				<td> <?php echo $fetch_userdata['texto'] ?> </td>
-				<td> <?php echo $fetch_userdata['imagem'] ?> </td>
+				<td> <img src="<?php echo UPLOAD_URI . '/'.$fetch_userdata['imagem'] ?>" width=100px/> </td>
 				
 				<td> 
 					<a href="<?php echo HOME_URI ?>/SlideRegister/index/edit/<?php echo $fetch_userdata['codigo'] ?>">Edit</a>

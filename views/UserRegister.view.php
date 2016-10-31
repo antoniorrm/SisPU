@@ -9,7 +9,7 @@ $modelo->get_register_form(chk_array($parametros, 1));
 $modelo->del_user( $parametros );
 ?>
 
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 	<table class="form-table">
 		<tr>
 			<td>Nome: </td>
@@ -31,9 +31,7 @@ $modelo->del_user( $parametros );
 		</tr>
 		<tr>
 			<td>Foto: </td>
-			<td> <input type="text" name="user_foto" value="<?php
-			echo htmlentities( chk_array( $modelo->form_data, 'user_foto') );
-			?>" /></td>
+			<td> <input type="file" name="user_foto"/></td>
 		</tr>
 		<tr>
 			<td>Permissions <br><small>(Separate permissions using commas)</small>: </td>
