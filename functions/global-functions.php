@@ -28,10 +28,19 @@ function chk_array ( $array, $key ) {
  * Por exemplo: para a classe TutsupMVC, o arquivo vai chamar class-TutsupMVC.php
  */
 function __autoload($class_name) {
-	$file = ABSPATH . '/class/' . $class_name . '.class.php';
+	$file = '';
+	if (strstr($class_name, 'DAO')) {
+		$file = ABSPATH . '/dao/'.$class_name.'.php';
+	}else if (strstr($class_name, 'ENTITY')) {
+		$file = ABSPATH . '/model/entity/'.$class_name.'.php';
+	}else if (strstr($class_name, 'Menager')) {
+		$file = ABSPATH . '/model/menager/'.$class_name.'.php';
+	}else{
+		$file = ABSPATH . '/model/'.$class_name.'.php';
+	}
 	
 	if ( ! file_exists( $file ) ) {
-		require_once ABSPATH . '/views/404.view.php';
+		require_once ABSPATH . '/view/404.view.php';
 		return;
 	}
 	

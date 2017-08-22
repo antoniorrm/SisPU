@@ -7,38 +7,37 @@
 define( 'ABSPATH', dirname( __FILE__ ) );
 
 // Caminho para a pasta de uploads
-define( 'UP_ABSPATH', ABSPATH . '/views/_uploads' );
+define( 'UP_ABSPATH', ABSPATH . '/view/_uploads' );
+
+// Caminho para a pasta de uploads de icones das categorias
+define( 'UP_ICON_CATEG', ABSPATH . '/view/_uploads/icons' );
 
 // URL da home
-define( 'HOME_URI', 'http://localhost/Gerenciador' );
+define( 'HOME_URI', 'http://localhost/sispu' );
 
 //ULR do caminho de arquivos de UPLOAD
-define( 'UPLOAD_URI', HOME_URI . '/views/_uploads' );
+define( 'UPLOAD_URI', HOME_URI . '/view/_uploads' );
+
+//ULR do caminho de arquivos de UPLOAD
+define( 'CATEGORIAS_URI', HOME_URI . '/view/_uploads/icons' );
 
 // Nome do host da base de dados
 define( 'HOSTNAME', 'localhost' );
 
 // Nome do DB
-define( 'DB_NAME', 'gerenciador' );
+define( 'DB_NAME', 'sispu' );
 
 // Usuário do DB
 define( 'DB_USER', 'root' );
 
 // Senha do DB
-define( 'DB_PASSWORD', 'qwe123' );
+define( 'DB_PASSWORD', '12345678' );
 
 // Charset da conexão PDO
 define( 'DB_CHARSET', 'utf8' );
 
 // Se você estiver desenvolvendo, modifique o valor para true
 define( 'DEBUG', true );
-
-//CONFIGURAÇÕES DO E-MAIL:
-define('SMTP_HOST', 'onewaree.com');//Domínio do cliente
-define('SMTP_USERNAME', 'teste@onewaree.com');//E-mail do servidor SMTP
-define('SMTP_PASSWORD', 'qwe123');//Senha do servidor SMTP
-define('EMAIL_FROM', 'teste@onewaree.com');//E-mail do remetente
-define('EMAIL_NAME', 'OneWaree');//Nome do remetente
 
 /**
  * Não edite daqui em diante
